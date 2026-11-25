@@ -93,6 +93,10 @@ form .btn{grid-column:1/-1;padding:15px;font-size:1.02rem}
 .note{grid-column:1/-1;font-size:.8rem;color:var(--muted);text-align:center}
 .msg{grid-column:1/-1;padding:14px 16px;border-radius:12px;font-size:.95rem;display:none}
 .msg.ok{display:block;background:#e6ede7;color:var(--sage-dark)}
+.msg p{margin-bottom:12px}
+.msg small{display:block;margin-top:10px;font-size:.8rem;color:var(--muted)}
+.btn.tg{background:#229ed9;padding:11px 20px;font-size:.95rem}
+.btn.tg:hover{background:#1a7fb0}
 .msg.err{display:block;background:#f7e3df;color:#8a3b2e}
 
 /* contact */
@@ -253,7 +257,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 <footer>
   <div class="wrap">
     <span>© 2026 Serenity Spa & Wellness · Astana</span>
-    <span>Student project · Generative AI, ISE MNU</span>
+    <span><a href="staff.html" style="color:#cfd8d2">Staff portal</a> · Student project · Generative AI, ISE MNU</span>
   </div>
 </footer>
 
@@ -286,14 +290,25 @@ form.addEventListener("submit", async (e) => {
   }
   if (!/^\S+@\S+\.\S+$/.test(data.email)) { show("err", "Please enter a valid email."); return; }
   btn.disabled = true; btn.textContent = "Sending…";
+  const tgCode = "b" + Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4);
   try {
     const res = await fetch(WEBHOOK_URL, {
       method: "POST",
       headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({...data, source: "website"})
+      body: JSON.stringify({...data, tgCode, source: "website"})
     });
     if (!res.ok) throw new Error(res.status);
-    show("ok", `Thank you, ${data.name.split(" ")[0]}! Your ${data.treatment} request is received — check your email for the confirmation.`);
+    msg.className = "msg ok";
+    msg.innerHTML = "";
+    const p = document.createElement("p");
+    p.textContent = `Thank you, ${data.name.split(" ")[0]}! Your ${data.treatment} is booked — check your email for the confirmation.`;
+    const a = document.createElement("a");
+    a.href = `https://t.me/serenitysspa_bot?start=${tgCode}`;
+    a.target = "_blank"; a.rel = "noopener"; a.className = "btn tg";
+    a.textContent = "Get updates in Telegram";
+    const small = document.createElement("small");
+    small.textContent = "Tap Start in the bot to receive your confirmation, wellness plan and birthday gift.";
+    msg.append(p, a, small);
     form.reset();
   } catch (err) {
     show("err", "Sorry, something went wrong. Please call us at +7 700 123 45 67.");

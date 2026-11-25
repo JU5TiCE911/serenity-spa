@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Staff portal — Serenity Spa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#24302b;--muted:#5d6b64;--sage:#6f8a7a;--sage-dark:#4e6a5b;--sand:#f4efe7;--cream:#fbf8f3;--line:#e3dccf;--gold:#b89a6a;--radius:16px;--shadow:0 8px 30px rgba(36,48,43,.08)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.5}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+header{background:#fff;border-bottom:1px solid var(--line)}
+header .wrap{display:flex;justify-content:space-between;align-items:center;height:64px}
+.logo{font-family:"Cormorant Garamond",serif;font-size:1.5rem;font-weight:600;text-decoration:none;color:var(--ink)}
+.logo span{color:var(--sage)}
+.tag{font-size:.8rem;background:var(--sand);padding:4px 10px;border-radius:999px;color:var(--muted)}
+h1{font-family:"Cormorant Garamond",serif;font-size:2.2rem;margin:28px 0 6px}
+.sub{color:var(--muted);margin-bottom:22px}
+.bar{display:flex;flex-wrap:wrap;gap:12px;align-items:end;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:20px}
+.f{display:flex;flex-direction:column;gap:4px}
+label{font-size:.75rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+input,select{font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--cream);color:var(--ink)}
+button{font:inherit;cursor:pointer;border:0;border-radius:999px;padding:10px 18px;background:var(--sage-dark);color:#fff;font-weight:500}
+button:hover{background:var(--ink)}
+button.ghost{background:transparent;border:1px solid var(--line);color:var(--ink)}
+button:disabled{opacity:.5;cursor:default}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px}
+.stat b{display:block;font-size:1.6rem;font-family:"Cormorant Garamond",serif}
+.stat span{font-size:.8rem;color:var(--muted)}
+.list{display:grid;gap:12px;margin-bottom:40px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;display:grid;grid-template-columns:110px 1fr auto;gap:16px;align-items:start}
+.time{font-family:"Cormorant Garamond",serif;font-size:1.7rem;line-height:1}
+.time small{display:block;font-family:Inter;font-size:.75rem;color:var(--muted);margin-top:6px}
+.who{font-weight:600;font-size:1.05rem}
+.meta{color:var(--muted);font-size:.88rem;margin:2px 0 8px}
+.pref{background:var(--sand);border-radius:10px;padding:8px 12px;font-size:.9rem}
+.pref b{font-size:.72rem;text-transform:uppercase;letter-spacing:.5px;color:var(--gold);display:block}
+.side{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+.badge{font-size:.75rem;padding:4px 10px;border-radius:999px;font-weight:600}
+.badge.Booked{background:#e9f1fe;color:#174ea6}
+.badge.Completed{background:#e6ede7;color:var(--sage-dark)}
+.badge.No-show{background:#fce8e6;color:#8c1d16}
+.empty,.err{padding:28px;text-align:center;color:var(--muted);background:#fff;border:1px dashed var(--line);border-radius:var(--radius)}
+.err{color:#8a3b2e;border-color:#e8b9b0}
+.hint{font-size:.8rem;color:var(--muted);margin:-8px 0 18px}
+@media (max-width:720px){.stats{grid-template-columns:1fr 1fr}.card{grid-template-columns:1fr}.side{align-items:flex-start;flex-direction:row}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><a href="./" class="logo">Serenity <span>Spa</span></a><span class="tag">Staff portal</span></div></header>
+<main class="wrap">
+  <h1>Today's sessions</h1>
+  <p class="sub">Live schedule from the booking system. Client preferences are shown on every card so each therapist is prepared before the client arrives.</p>
+
+  <div class="bar">
+    <div class="f"><label for="key">Access code</label><input id="key" type="password" placeholder="Staff code" autocomplete="off"></div>
+    <div class="f"><label for="date">Date</label><input id="date" type="date"></div>
+    <div class="f"><label for="ther">Therapist</label>
+      <select id="ther"><option value="">All therapists</option><option>Aigerim</option><option>Dana</option><option>Madina</option></select></div>
+    <button id="load">Show schedule</button>
+    <button id="all" class="ghost">All bookings</button>
+  </div>
+  <p class="hint">“Mark completed” closes the visit — the client then automatically receives a personal wellness plan.</p>
+
+  <div class="stats" id="stats" hidden>
+    <div class="stat"><b id="sCount">0</b><span>sessions</span></div>
+    <div class="stat"><b id="sDone">0</b><span>completed</span></div>
+    <div class="stat"><b id="sRev">0</b><span>revenue, KZT</span></div>
+    <div class="stat"><b id="sTop">—</b><span>top treatment</span></div>
+  </div>
+  <div class="list" id="list"></div>
+</main>
+
+<script>
+const API = "https://ai2.mnu.kz/webhook/";
+const $ = id => document.getElementById(id);
+const store = {
+  get(k){ try { return localStorage.getItem(k) || ""; } catch(e){ return ""; } },
+  set(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
+};
+const today = () => { const d = new Date(); d.setMinutes(d.getMinutes() - d.getTimezoneOffset()); return d.toISOString().slice(0,10); };
+$("date").value = today();
+$("key").value = store.get("staffKey");
+$("ther").value = store.get("staffTher");
+let current = [];
+
+function el(tag, cls, text){ const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+
+function render(){
+  const ther = $("ther").value;
+  const rows = current.filter(b => !ther || b.therapist === ther);
+  const list = $("list"); list.innerHTML = "";
+  $("stats").hidden = false;
+  $("sCount").textContent = rows.length;
+  $("sDone").textContent = rows.filter(b => b.status === "Completed").length;
+  $("sRev").textContent = rows.reduce((s,b) => s + Number(b.price || 0), 0).toLocaleString("ru-RU");
+  const cnt = {}; rows.forEach(b => cnt[b.treatment] = (cnt[b.treatment] || 0) + 1);
+  $("sTop").textContent = Object.entries(cnt).sort((a,b) => b[1]-a[1])[0]?.[0] || "—";
+  if (!rows.length){ list.append(el("div","empty","No sessions for this selection.")); return; }
+  rows.forEach(b => {
+    const card = el("div","card");
+    const [d, t] = (b.start || " ").split(" ");
+    const time = el("div","time", t || "—"); time.append(el("small", null, d));
+    const mid = el("div");
+    mid.append(el("div","who", b.client), el("div","meta", `${b.treatment} · ${b.therapist} · ${Number(b.price||0).toLocaleString("ru-RU")} ₸ · ${b.phone}`));
+    const pref = el("div","pref"); pref.append(el("b", null, "Client preferences"), document.createTextNode(b.preferences || "none"));
+    mid.append(pref);
+    const side = el("div","side");
+    side.append(el("span","badge " + (b.status || "Booked"), b.status || "Booked"));
+    if (b.status !== "Completed"){
+      const btn = el("button","ghost","Mark completed");
+      btn.onclick = () => complete(b, btn);
+      side.append(btn);
+    } else if (b.planSent) side.append(el("small", null, "Wellness plan sent"));
+    card.append(time, mid, side);
+    list.append(card);
+  });
+}
+
+async function load(all){
+  const key = $("key").value.trim(); store.set("staffKey", key); store.set("staffTher", $("ther").value);
+  $("list").innerHTML = ""; $("list").append(el("div","empty","Loading…"));
+  const url = API + "staff-api?key=" + encodeURIComponent(key) + (all ? "" : "&date=" + $("date").value);
+  try {
+    const r = await fetch(url);
+    if (r.status === 401) throw new Error("Wrong access code.");
+    if (!r.ok) throw new Error("Server error " + r.status);
+    const data = await r.json();
+    current = data.bookings || [];
+    if (all) current = current.slice().reverse();
+    render();
+  } catch(e){
+    $("stats").hidden = true; $("list").innerHTML = ""; $("list").append(el("div","err", e.message));
+  }
+}
+
+async function complete(b, btn){
+  btn.disabled = true; btn.textContent = "Saving…";
+  try {
+    const r = await fetch(API + "staff-complete?key=" + encodeURIComponent($("key").value.trim()) + "&id=" + encodeURIComponent(b.id));
+    if (!r.ok) throw new Error();
+    b.status = "Completed"; render();
+  } catch(e){ btn.disabled = false; btn.textContent = "Retry"; }
+}
+
+$("load").onclick = () => load(false);
+$("all").onclick = () => load(true);
+$("ther").onchange = () => { store.set("staffTher", $("ther").value); if (current.length) render(); };
+if ($("key").value) load(false);
+</script>
+</body>
+</html>
