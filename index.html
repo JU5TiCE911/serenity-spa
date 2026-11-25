@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Serenity Spa & Wellness — Astana</title>
+<meta name="description" content="Massage, facials and spa rituals in Astana. Book online in 30 seconds — confirmation, reminders and a personal wellness plan arrive automatically.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#24302b; --muted:#5d6b64; --sage:#6f8a7a; --sage-dark:#4e6a5b; --sand:#f4efe7; --cream:#fbf8f3; --line:#e3dccf; --gold:#b89a6a;
+  --radius:18px; --shadow:0 10px 40px rgba(36,48,43,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6;font-size:16px}
+h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;line-height:1.15}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+/* nav */
+header{position:sticky;top:0;z-index:20;background:rgba(251,248,243,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-family:"Cormorant Garamond",serif;font-size:1.6rem;font-weight:600;text-decoration:none;letter-spacing:.5px}
+.logo span{color:var(--sage)}
+.nav ul{display:flex;gap:28px;list-style:none}
+.nav ul a{text-decoration:none;color:var(--muted);font-size:.95rem}
+.nav ul a:hover{color:var(--ink)}
+.btn{display:inline-block;background:var(--sage-dark);color:#fff;text-decoration:none;padding:12px 24px;border-radius:999px;font-weight:500;border:0;cursor:pointer;font-size:1rem;transition:background .2s,transform .2s}
+.btn:hover{background:var(--ink);transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:#fff}
+
+/* hero */
+.hero{padding:88px 0 72px;background:radial-gradient(1200px 500px at 85% 10%,#e6ede7 0%,transparent 60%),radial-gradient(900px 400px at 0% 100%,#f0e6d6 0%,transparent 60%)}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+.eyebrow{text-transform:uppercase;letter-spacing:3px;font-size:.78rem;color:var(--sage);font-weight:600;margin-bottom:18px}
+.hero h1{font-size:clamp(2.6rem,6vw,4.4rem);margin-bottom:22px}
+.hero h1 em{color:var(--sage-dark)}
+.hero p.lead{font-size:1.12rem;color:var(--muted);max-width:520px;margin-bottom:32px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.stats{display:flex;gap:36px;margin-top:44px}
+.stats b{display:block;font-family:"Cormorant Garamond",serif;font-size:2rem}
+.stats span{font-size:.85rem;color:var(--muted)}
+.hero-art{aspect-ratio:4/5;border-radius:200px 200px var(--radius) var(--radius);background:linear-gradient(160deg,#9fb5a6 0%,#6f8a7a 45%,#3f574a 100%);position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.hero-art svg{position:absolute;inset:0;width:100%;height:100%}
+.badge{position:absolute;left:-18px;bottom:36px;background:#fff;border-radius:14px;padding:14px 18px;box-shadow:var(--shadow);font-size:.9rem;max-width:230px}
+.badge b{display:block;font-size:.95rem}
+
+/* sections */
+section{padding:88px 0}
+.head{text-align:center;max-width:640px;margin:0 auto 52px}
+.head h2{font-size:clamp(2rem,4vw,2.9rem);margin-bottom:12px}
+.head p{color:var(--muted)}
+
+/* services */
+.services{background:#fff}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card{border:1px solid var(--line);border-radius:var(--radius);padding:28px;background:var(--cream);transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.icon{width:48px;height:48px;border-radius:50%;background:#e6ede7;display:grid;place-items:center;margin-bottom:18px;color:var(--sage-dark)}
+.card h3{font-size:1.55rem;margin-bottom:8px}
+.card p{color:var(--muted);font-size:.95rem;flex:1}
+.meta{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px dashed var(--line);font-size:.9rem}
+.price{font-weight:600}
+.card .pick{background:none;border:0;color:var(--sage-dark);font-weight:600;cursor:pointer;font-size:.9rem}
+
+/* how */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;counter-reset:s}
+.step{padding:26px;border-radius:var(--radius);background:var(--sand);position:relative}
+.step::before{counter-increment:s;content:"0" counter(s);font-family:"Cormorant Garamond",serif;font-size:2.2rem;color:var(--gold);display:block;margin-bottom:6px}
+.step h3{font-size:1.3rem;margin-bottom:6px}
+.step p{font-size:.92rem;color:var(--muted)}
+
+/* booking */
+.booking{background:linear-gradient(180deg,#fff 0%,var(--sand) 100%)}
+.book-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:start}
+.book-info h2{font-size:clamp(2rem,4vw,2.8rem);margin-bottom:14px}
+.book-info p{color:var(--muted);margin-bottom:22px}
+.book-info ul{list-style:none;display:grid;gap:12px}
+.book-info li{display:flex;gap:10px;align-items:flex-start;font-size:.95rem}
+.book-info li::before{content:"✓";color:var(--sage-dark);font-weight:700}
+form{background:#fff;border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field.full{grid-column:1/-1}
+label{font-size:.82rem;font-weight:600;color:var(--muted)}
+input,select,textarea{font:inherit;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--cream);color:var(--ink);width:100%}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--sage);border-color:transparent}
+textarea{min-height:90px;resize:vertical}
+form .btn{grid-column:1/-1;padding:15px;font-size:1.02rem}
+.note{grid-column:1/-1;font-size:.8rem;color:var(--muted);text-align:center}
+.msg{grid-column:1/-1;padding:14px 16px;border-radius:12px;font-size:.95rem;display:none}
+.msg.ok{display:block;background:#e6ede7;color:var(--sage-dark)}
+.msg.err{display:block;background:#f7e3df;color:#8a3b2e}
+
+/* contact */
+.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.contact-card{padding:28px;border:1px solid var(--line);border-radius:var(--radius);background:#fff}
+.contact-card h3{font-size:1.35rem;margin-bottom:8px}
+.contact-card p,.contact-card a{color:var(--muted);font-size:.95rem;text-decoration:none}
+footer{background:var(--ink);color:#cfd8d2;padding:36px 0;font-size:.88rem}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* responsive */
+@media (max-width:900px){
+  .hero-grid,.book-grid{grid-template-columns:1fr}
+  .hero-art{max-width:420px;margin:0 auto;width:100%}
+  .grid,.contact-grid{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .nav ul{display:none}
+}
+@media (max-width:600px){
+  section{padding:64px 0}
+  .hero{padding:56px 0}
+  .grid,.contact-grid,.steps{grid-template-columns:1fr}
+  form{grid-template-columns:1fr;padding:22px}
+  .stats{gap:22px}
+  .badge{left:12px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#" class="logo">Serenity <span>Spa</span></a>
+    <ul>
+      <li><a href="#services">Treatments</a></li>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#book" class="btn">Book now</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Spa & Wellness · Astana</div>
+      <h1>Slow down.<br><em>Breathe.</em> Restore.</h1>
+      <p class="lead">Massage, facials and spa rituals tailored to you. Tell us your preferences once — your therapist will know them before you arrive, and a personal wellness plan follows every visit.</p>
+      <div class="hero-cta">
+        <a href="#book" class="btn">Book a treatment</a>
+        <a href="#services" class="btn ghost">See treatments</a>
+      </div>
+      <div class="stats">
+        <div><b>6</b><span>signature treatments</span></div>
+        <div><b>30 sec</b><span>to book online</span></div>
+        <div><b>7/7</b><span>open every day</span></div>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice">
+        <circle cx="300" cy="120" r="70" fill="#f4efe7" opacity=".9"/>
+        <path d="M0 360 C80 320 160 330 240 360 S360 400 400 370 V500 H0Z" fill="#3f574a" opacity=".55"/>
+        <path d="M0 410 C90 380 170 395 260 420 S360 440 400 425 V500 H0Z" fill="#2f4237" opacity=".7"/>
+        <g fill="#f4efe7" opacity=".95">
+          <ellipse cx="200" cy="300" rx="62" ry="22"/>
+          <ellipse cx="200" cy="268" rx="50" ry="18"/>
+          <ellipse cx="200" cy="241" rx="38" ry="14"/>
+        </g>
+        <path d="M200 225 C185 190 190 160 215 140 C212 170 220 195 200 225Z" fill="#cfe0d3"/>
+        <path d="M200 225 C220 195 245 185 270 190 C250 205 230 220 200 225Z" fill="#b9d0bf"/>
+      </svg>
+      <div class="badge"><b>Your therapist is briefed</b>Preferences, pressure, aroma and music — prepared before your session.</div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow">Treatments</div>
+      <h2>Signature treatments</h2>
+      <p>Every session is adapted to your preferences and followed by a personal home-care plan.</p>
+    </div>
+    <div class="grid">
+      <div class="card"><div class="icon">❋</div><h3>Classic Massage</h3><p>Full-body relaxing massage that melts tension in the back, neck and shoulders.</p><div class="meta"><span>60 min · <span class="price">15 000 ₸</span></span><button class="pick" data-t="Classic Massage">Book →</button></div></div>
+      <div class="card"><div class="icon">◉</div><h3>Hot Stone Massage</h3><p>Warm basalt stones and deep strokes for muscle recovery and deep calm.</p><div class="meta"><span>75 min · <span class="price">20 000 ₸</span></span><button class="pick" data-t="Hot Stone Massage">Book →</button></div></div>
+      <div class="card"><div class="icon">✿</div><h3>Facial Treatment</h3><p>Cleansing, hydration and a lifting massage matched to your skin type.</p><div class="meta"><span>60 min · <span class="price">12 000 ₸</span></span><button class="pick" data-t="Facial Treatment">Book →</button></div></div>
+      <div class="card"><div class="icon">❖</div><h3>Body Scrub</h3><p>Salt and botanical exfoliation that leaves skin soft, smooth and glowing.</p><div class="meta"><span>45 min · <span class="price">10 000 ₸</span></span><button class="pick" data-t="Body Scrub">Book →</button></div></div>
+      <div class="card"><div class="icon">☘</div><h3>Aromatherapy</h3><p>Gentle massage with essential oils chosen for your mood: calm, energy or sleep.</p><div class="meta"><span>60 min · <span class="price">14 000 ₸</span></span><button class="pick" data-t="Aromatherapy">Book →</button></div></div>
+      <div class="card"><div class="icon">✦</div><h3>Spa Day Package</h3><p>Scrub, massage, facial and tea ritual — three hours of complete reset.</p><div class="meta"><span>3 h · <span class="price">35 000 ₸</span></span><button class="pick" data-t="Spa Day Package">Book →</button></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow">How it works</div>
+      <h2>Care that starts before you arrive</h2>
+      <p>Our booking system takes care of the details, so your time here is only about you.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><h3>Book online</h3><p>Pick a treatment and time. Confirmation and arrival tips arrive instantly by email and Telegram.</p></div>
+      <div class="step"><h3>We prepare</h3><p>Your preferences are saved and your therapist receives a personal brief before the session.</p></div>
+      <div class="step"><h3>Relax</h3><p>Enjoy a treatment tuned to your pressure, aroma and music preferences.</p></div>
+      <div class="step"><h3>Keep the glow</h3><p>After the visit you get a personal 7-day wellness plan — and a gift on your birthday.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="booking" id="book">
+  <div class="wrap book-grid">
+    <div class="book-info">
+      <div class="eyebrow">Booking</div>
+      <h2>Reserve your treatment</h2>
+      <p>Fill in the form — it takes 30 seconds. You'll receive a confirmation right away.</p>
+      <ul>
+        <li>Instant confirmation by email and Telegram</li>
+        <li>Your preferences shared with your therapist</li>
+        <li>Personal wellness plan after your visit</li>
+        <li>Birthday offer and voucher every year</li>
+      </ul>
+    </div>
+    <form id="bookingForm" novalidate>
+      <div class="field"><label for="name">Full name *</label><input id="name" name="name" required placeholder="Aigerim Sadykova"></div>
+      <div class="field"><label for="phone">Phone *</label><input id="phone" name="phone" type="tel" required placeholder="+7 700 123 45 67"></div>
+      <div class="field"><label for="email">Email *</label><input id="email" name="email" type="email" required placeholder="you@example.com"></div>
+      <div class="field"><label for="birthday">Birthday</label><input id="birthday" name="birthday" type="date"></div>
+      <div class="field"><label for="treatment">Treatment *</label>
+        <select id="treatment" name="treatment" required>
+          <option value="">Choose…</option>
+          <option>Classic Massage</option><option>Hot Stone Massage</option><option>Facial Treatment</option>
+          <option>Body Scrub</option><option>Aromatherapy</option><option>Spa Day Package</option>
+        </select></div>
+      <div class="field"><label for="datetime">Date & time *</label><input id="datetime" name="datetime" type="datetime-local" required></div>
+      <div class="field full"><label for="preferences">Preferences</label><textarea id="preferences" name="preferences" placeholder="Pressure, favourite aromas, music, allergies or areas to avoid…"></textarea></div>
+      <button type="submit" class="btn" id="submitBtn">Confirm booking</button>
+      <div class="msg" id="msg" role="status"></div>
+      <p class="note">By booking you agree to receive booking messages from Serenity Spa.</p>
+    </form>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow">Contact</div>
+      <h2>Visit us</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card"><h3>Address</h3><p>Mangilik El Ave 55, Astana<br>Free parking at the entrance</p></div>
+      <div class="contact-card"><h3>Hours</h3><p>Every day 10:00 – 22:00<br>Last booking at 20:30</p></div>
+      <div class="contact-card"><h3>Get in touch</h3><p><a href="tel:+77001234567">+7 700 123 45 67</a><br><a href="mailto:hello@serenityspa.kz">hello@serenityspa.kz</a><br><a id="tgLink" href="https://t.me/" target="_blank" rel="noopener">Telegram bot</a></p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Serenity Spa & Wellness · Astana</span>
+    <span>Student project · Generative AI, ISE MNU</span>
+  </div>
+</footer>
+
+<script>
+const WEBHOOK_URL = "https://ai2.mnu.kz/webhook/c57bb970-715a-41c2-955d-1ff45dba913f";
+
+// "Book →" buttons preselect the treatment
+document.querySelectorAll(".pick").forEach(b => b.addEventListener("click", () => {
+  document.getElementById("treatment").value = b.dataset.t;
+  document.getElementById("book").scrollIntoView({behavior: "smooth"});
+}));
+
+// earliest bookable time = now + 1h
+const dtInput = document.getElementById("datetime");
+const min = new Date(Date.now() + 60 * 60000);
+min.setMinutes(min.getMinutes() - min.getTimezoneOffset());
+dtInput.min = min.toISOString().slice(0, 16);
+
+const form = document.getElementById("bookingForm");
+const msg = document.getElementById("msg");
+const btn = document.getElementById("submitBtn");
+
+function show(type, text) { msg.className = "msg " + type; msg.textContent = text; }
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const data = Object.fromEntries(new FormData(form).entries());
+  if (!data.name || !data.phone || !data.email || !data.treatment || !data.datetime) {
+    show("err", "Please fill in all required fields (*)."); return;
+  }
+  if (!/^\S+@\S+\.\S+$/.test(data.email)) { show("err", "Please enter a valid email."); return; }
+  btn.disabled = true; btn.textContent = "Sending…";
+  try {
+    const res = await fetch(WEBHOOK_URL, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({...data, source: "website"})
+    });
+    if (!res.ok) throw new Error(res.status);
+    show("ok", `Thank you, ${data.name.split(" ")[0]}! Your ${data.treatment} request is received — check your email for the confirmation.`);
+    form.reset();
+  } catch (err) {
+    show("err", "Sorry, something went wrong. Please call us at +7 700 123 45 67.");
+  } finally {
+    btn.disabled = false; btn.textContent = "Confirm booking";
+  }
+});
+</script>
+</body>
+</html>
